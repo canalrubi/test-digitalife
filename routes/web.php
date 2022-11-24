@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +19,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/', function () {
         return view('home');
     });
-});
+
+    Route::get('/products/new',   [ProductController::class, 'create']);
+    Route::resource('/products',  ProductController::class);
+ });
 
 
 
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
