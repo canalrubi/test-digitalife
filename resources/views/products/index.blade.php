@@ -19,13 +19,23 @@
                 <div class="col fw-bold text-uppercase">{{trans('lang.price')}}</div>
                 <div class="col fw-bold text-uppercase">{{trans('lang.amount')}}</div>
                 <div class="col fw-bold text-uppercase"></div>
+                <div class="col fw-bold text-uppercase"></div>
             </div>
             @foreach ($products as $item)
-                <div class="col-12 d-flex table bg-white">
+
+                <div class="col-12 d-flex table bg-white border-bottom">
                     <div class="col">{{$item->id}}</div>
                     <div class="col">{{$item->name}}</div>
                     <div class="col">$ {{number_format($item->price, 2)}}</div>
                     <div class="col">{{$item->qty}}</div>
+                    <div class="col d-flex justify-content-between">
+                      @foreach ($item->images->take(1) as $image)
+                      <img src="{{$image->original_url}}" 
+                      alt="{{trans('lang.image')}}"
+                      width="50" height="50">
+                      @endforeach
+                       
+                    </div>
                     <div class="col d-flex justify-content-between">
                         <a href="{{url("products/".$item->id)}}">Ver / Editar</a>
                     </div>

@@ -9,7 +9,13 @@
             </div>
             <div class="modal-body">
                 <h6 class="text-uppercase fw-bold">{{$data['content']}}</h6>   
+                @if(isset($data['type']))
+                <div class="row d-flex justify-content-center">
+                  <img src={{$data['file']}} alt="{{trans('lang.image')}}" width="200" height="300">
+                </div>
+                @else 
                 <h3>{{$data['info']}}</h3> 
+                @endif
             </div>
             <div class="modal-footer d-flex float-end mb-3 mt-3">
               <button type="submit" class="btn btn-primary">{{trans('lang.delete')}}</button>

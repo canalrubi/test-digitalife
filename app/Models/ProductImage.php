@@ -2,19 +2,19 @@
 
 namespace App\Models;
 
-use App\Models\ProductImage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Product extends Model
+class ProductImage extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    
-    protected $fillable = ['name', 'price', 'qty', 'user_id'];
 
-    public function images(){
-        return $this->hasMany(ProductImage::class); 
+    protected $fillable = ['original_url', 'url', 'product_id'];
+
+    public function product() {
+        return $this->belongsTo(Product::class);
     }
+
 }

@@ -1,10 +1,9 @@
-@extends('layouts.app')
- @section('content')
-  @if(isset($product))
-  {{ Form::model($product, ['url' => ['products', $product->id], 'method' => 'put']) }}
-  @else
-    {{ Form::open(['url' => 'products']) }}
-  @endif
+
+        @if(isset($product))
+        {{ Form::model($product, ['url' => ['products', $product->id], 'method' => 'put']) }}
+        @else
+          {{ Form::open(['url' => 'products']) }}
+        @endif
       <div class="container">
         <div class="row">
           <div class="col-12">
@@ -20,13 +19,12 @@
                 {{ trans('lang.registered_on')." ".date('d-M-y', strtotime($product->created_at)) }}
               </div>
               <div>
-              <a data-bs-toggle="modal" data-bs-target="#modalConfirm{{$product->id}}" href="#" class="pe-auto">Eliminar</a>
+              <a data-bs-toggle="modal" data-bs-target="#modalConfirm{{$product->id}}" href="#" class="pe-auto">{{trans('lang.delete')}}</a>
               </div>
               @endif
             </h5>
             <h5>
               <a href="{{url('products')}}" class="text-dark">{{trans('lang.return_to_the_list')}}</a>
-
             </h5>
           </div>
         </div>
@@ -50,22 +48,14 @@
                 {!!Form::number('qty',null,['class'=>'form-control','id'=>'price'])!!}
               </div>
             </div>
-
-            <div class="row">
-              <div class="d-flex justify-content-between mb-3">
-                @if(!isset($product))
-                <button type="reset" class="btn btn-secondary">{{trans('lang.clean')}}</button>
-                @endif
-                <button type="submit" class="btn btn-primary">{{(isset($product)) ? trans('lang.update_information') : trans('lang.save')}}</button>
-              </div>
-            </div>
-            
+           
           </div>
         </div>
           
       </div>
-  {!!Form::close()!!}
 
+
+{!!Form::close()!!}
 @if(isset($product))               
   <?php $data = [
     'title'   => trans('lang.delete_product'),
@@ -77,4 +67,3 @@
 ?>
 @include('shared.confirmation-modal.confirm-delete',[$data])
 @endif
-@endsection

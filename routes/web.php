@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductoImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +21,12 @@ Route::group(['middleware' => ['auth']], function() {
         return view('home');
     });
 
-    Route::get('/products/new',   [ProductController::class, 'create']);
-    Route::resource('/products',  ProductController::class);
+    Route::get('/products/new',      [ProductController::class, 'create']);
+    Route::delete('/products/{id}',  [ProductController::class, 'destroy']);
+    Route::resource('/products',     ProductController::class);
+    Route::resource('/files',        ProductoImageController::class);
+    
+
  });
 
 

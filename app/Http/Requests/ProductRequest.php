@@ -24,23 +24,25 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'   => 'required',
-            'price'  => 'required|numeric|between:0,1000000.99',
-            'qty'    => 'required|integer',
-            
+            'name'                  => 'required',
+            'price'                 => 'required|numeric|between:0,1000000.99',
+            'qty'                   => 'required|integer',
+            'addMoreFile.*.urlFile' => 'nullable|url',            
         ];
     }
 
 
     public function messages() {
         return [
-            'name.required'   => trans('lang.product_name_is_required'),
-            'price.required'  => trans('lang.price_is_necessary'),
-            'price.required'  => trans('lang.price_is_necessary'),
-            'price.numeric'   => trans('lang.price_must_be_integer_or_decimals'),
-            'price.between'   => trans('lang.price_between'),
-            'qty.required'    => trans('lang.qty_is_necessary'),
-            'qty.integer'     => trans('lang.qty_must_be_an_integer'),
+            'name.required'             => trans('lang.product_name_is_required'),
+            'price.required'            => trans('lang.price_is_necessary'),
+            'price.required'            => trans('lang.price_is_necessary'),
+            'price.numeric'             => trans('lang.price_must_be_integer_or_decimals'),
+            'price.between'             => trans('lang.price_between'),
+            'qty.required'              => trans('lang.qty_is_necessary'),
+            'qty.integer'               => trans('lang.qty_must_be_an_integer'),
+            'addMoreFile.*.urlFile.url' => trans('lang.url_must_be_valid'),
+
 
         ];
     }
